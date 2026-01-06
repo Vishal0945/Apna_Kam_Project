@@ -24,4 +24,16 @@ hs_err_pid*
 replay_pid*
 /.metadata/
 
-target/**
+/target/
+apnakam/target/
+# =========================
+# Maven / Java
+# =========================
+target/
+*.class
+
+# =========================
+# Maven Wrapper (KEEP these)
+# =========================
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
