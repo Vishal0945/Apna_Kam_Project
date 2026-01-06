@@ -11,11 +11,20 @@ import com.apnakam.service.RegistrationService;
 //@CrossOrigin
 @RequestMapping("/credential")
 public class UserRegistrationController {
-//	@Autowired	
-//	RegistrationService service;
+	@Autowired	
+	RegistrationService service;
 	
 	@GetMapping("/hello")
 	public String hello() {
 		return "api is running properly...";
 	}
+	
+	@GetMapping("/sum")
+	public int sum()
+	{
+		return service.getsum();
+		
+		
+	}
+	
 }

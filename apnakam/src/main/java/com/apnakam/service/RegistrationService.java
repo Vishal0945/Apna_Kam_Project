@@ -1,5 +1,7 @@
 package com.apnakam.service;
 
-public class RegistrationService {
+public interface RegistrationService {
+
+	int getsum();
 
 }

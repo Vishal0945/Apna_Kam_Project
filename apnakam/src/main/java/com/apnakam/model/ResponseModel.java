@@ -10,5 +10,4 @@ public class ResponseModel {
 	private Object httpStatus;
     private String name;
     
-    //Vishal
 }
