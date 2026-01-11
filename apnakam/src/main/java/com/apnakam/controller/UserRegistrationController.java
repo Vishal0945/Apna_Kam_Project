@@ -2,6 +2,7 @@ package com.apnakam.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,7 @@ public class UserRegistrationController {
 
 	        // ✅ Call saveOtp()
 	        service.saveOtp(mobile, otp);
+//	        service.sendOtpSms(mobile, otp); // 🔥 SMS SENT HERE
 
 	        // TODO: Send OTP via SMS / Email
 	        System.out.println("OTP sent: " + otp);

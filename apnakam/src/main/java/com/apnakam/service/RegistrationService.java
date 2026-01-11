@@ -10,4 +10,6 @@ public interface RegistrationService {
 
 	void saveOtp(String mobile, String otp);
 
+//	void sendOtpSms(String mobile, String otp);
+
 }

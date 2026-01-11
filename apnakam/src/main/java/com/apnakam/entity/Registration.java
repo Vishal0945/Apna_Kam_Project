@@ -15,7 +15,8 @@ public class Registration {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-private Long RegistrationId;
+private Long registrationId;
+	@Column
 	private String mobileNumber;
 
 }

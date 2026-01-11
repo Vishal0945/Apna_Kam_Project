@@ -87,7 +87,14 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Configuration Processor -->
+
+<!--sms send-->
+<dependency>
+  <groupId>com.google.firebase</groupId>
+  <artifactId>firebase-admin</artifactId>
+  <version>9.2.0</version>
+</dependency>   
+     <!-- Configuration Processor -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>

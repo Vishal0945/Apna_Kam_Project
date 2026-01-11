@@ -8,4 +8,6 @@ import com.apnakam.entity.Registration;
 @Repository
 public interface RegistrationRepo extends JpaRepository<Registration,Long > {
 
+	Boolean existsByMobileNumber(String mobile);
+
 }
