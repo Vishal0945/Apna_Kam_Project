@@ -37,8 +37,8 @@ public class WorkerController {
 	}
 	
 	
-	 @GetMapping("worker/{id}")
-	    public ResponseModel getWorkerById(@PathVariable Long id) {
+	 @GetMapping("worker")
+	    public ResponseModel getWorkerById(@RequestParam String id) {
 	        ResponseModel res = workerService.getWorkerById(id);
 	        return res;
 	        }
@@ -64,14 +64,24 @@ public class WorkerController {
 	     return res;
 	 }
 
-	 @DeleteMapping("/delete/{workerId}")
-	 public ResponseModel deleteWorker(@PathVariable String workerId) {
+	 @DeleteMapping("/delete")
+	 public ResponseModel deleteWorker(@RequestParam
+			 String workerId) {
 	    log.info("INFO: Delete request received for Worker ID: " + workerId);
 	     ResponseModel res = workerService.deleteWorker(workerId);
 	    log.info("INFO: Delete request processed for Worker ID: " + workerId);
 	     return res;
 	 }
-
+	 
+	    @GetMapping("/all/getAllCategories")
+	    public ResponseModel getAllCategories() {
+	        return workerService.getAllCategories();
+	    }
+	    
+	    @GetMapping("/all/serviceType")
+	    public ResponseModel getserviceType(@RequestParam Integer id) {
+	        return workerService.getserviceType(id);
+	    }
 //
 //	    @GetMapping("/city/{city}")
 //	    public ResponseEntity<ResponseModel> getByCity(@PathVariable String city) {

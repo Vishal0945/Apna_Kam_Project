@@ -8,20 +8,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.apnakam.entity.ServiceType;
 import com.apnakam.entity.WorkerDetails;
 
 @Repository
-public interface WorkerDetailsRepo extends JpaRepository<WorkerDetails,Long > {
-
-	@Query("""
-		    SELECT w.workerId
-		    FROM WorkerDetails w
-		    ORDER BY w.workerId DESC
-		""")
-		List<String> findLastWorkerId();
+public interface ServiceTypeRepo extends JpaRepository<ServiceType,Integer > {
 
 
-	Optional<WorkerDetails> findByWorkerIdIgnoreCase(String workerId);
+	List<ServiceType> findByCategoryId(Integer id);
+
+
+	
 
 		
 }

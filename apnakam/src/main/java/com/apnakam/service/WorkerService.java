@@ -8,13 +8,17 @@ public interface WorkerService {
 
 	ResponseModel saveWorker(WorkerDetailsModel  workerDetails);
 
-	ResponseModel getWorkerById(Long id);
+	ResponseModel getWorkerById(String id);
 
 	ResponseModel getAllWorkers(int page, int size);
 
 	ResponseModel updateWorker(String workerId, WorkerDetailsModel model);
 
 	ResponseModel deleteWorker(String workerId);
+
+	ResponseModel getAllCategories();
+
+	ResponseModel getserviceType(Integer id);
 
 
 

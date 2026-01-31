@@ -17,6 +17,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.apnakam.constant.CommonConstant;
+import com.apnakam.entity.ServiceType;
+import com.apnakam.entity.WorkCategory;
 import com.apnakam.entity.WorkerDetails;
 import com.apnakam.model.ResponseModel;
 import com.apnakam.model.WorkerDetailsModel;
@@ -75,11 +77,11 @@ public class WorkerServiceImpl extends AbstractMasterRepository implements Worke
 	}
 
 	@Override
-	public ResponseModel getWorkerById(Long id) {
+	public ResponseModel getWorkerById(String id) {
 
 		ResponseModel response = new ResponseModel();
 
-		Optional<WorkerDetails> optionalWorker = workerDetailsRepo.findById(id);
+		Optional<WorkerDetails> optionalWorker = workerDetailsRepo.findByWorkerIdIgnoreCase(id);
 
 		if (optionalWorker.isEmpty()) {
 			response.setHttpStatus(HttpStatus.NOT_FOUND);
@@ -137,6 +139,9 @@ public class WorkerServiceImpl extends AbstractMasterRepository implements Worke
 			model.setMobileNo(worker.getMobileNo());
 			model.setServiceType(worker.getServiceType());
 			model.setCity(worker.getCity());
+			model.setAvailability(worker.getAvailability());
+			model.setStatus(worker.getStatus());
+			model.setRating(worker.getRating());
 			return model; // ✅ IMPORTANT
 		}).collect(Collectors.toList());
 
@@ -164,7 +169,7 @@ public class WorkerServiceImpl extends AbstractMasterRepository implements Worke
 
 	    log.info("INFO: Updating Worker with ID: " + workerId);
 
-	    Optional<WorkerDetails> optionalWorker = workerDetailsRepo.findByWorkerId(workerId);
+	    Optional<WorkerDetails> optionalWorker = workerDetailsRepo.findByWorkerIdIgnoreCase(workerId);
 
 	    if (optionalWorker.isEmpty()) {
 	        log.info("WARN: Worker not found with ID: " + workerId);
@@ -217,7 +222,7 @@ public class WorkerServiceImpl extends AbstractMasterRepository implements Worke
 
 	    log.info("INFO: Soft deleting Worker ID: " + workerId);
 
-	    Optional<WorkerDetails> optionalWorker = workerDetailsRepo.findByWorkerId(workerId);
+	    Optional<WorkerDetails> optionalWorker = workerDetailsRepo.findByWorkerIdIgnoreCase(workerId);
 
 	    if (optionalWorker.isEmpty()) {
 	        log.info("WARN: Worker not found with ID: " + workerId);
@@ -232,6 +237,7 @@ public class WorkerServiceImpl extends AbstractMasterRepository implements Worke
 
 	    // Soft delete
 	    worker.setStatus("INACTIVE");
+	    worker.setAvailability(false);
 	    worker.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 	    workerDetailsRepo.save(worker);
 
@@ -244,5 +250,44 @@ public class WorkerServiceImpl extends AbstractMasterRepository implements Worke
 
 	    return response;
 	}
+
+	@Override
+	public ResponseModel getAllCategories() {
+
+	    ResponseModel response = new ResponseModel();
+
+	    List<WorkCategory> categories = workCategoryRepo.findAll();
+
+	    if (categories.isEmpty()) {
+	        response.setMessage("No categories found");
+	        response.setData(Collections.emptyList());
+	    } else {
+	        response.setMessage("Categories fetched successfully");
+	        response.setData(categories);
+	    }
+
+	    return response;
+	}
+
+	@Override
+	public ResponseModel getserviceType(Integer id) {
+
+	    ResponseModel response = new ResponseModel();
+
+	    List<ServiceType> serviceTypes =
+	            serviceTypeRepo.findByCategoryId(id);
+
+	    if (serviceTypes.isEmpty()) {
+	        response.setMessage("No service types found for this category");
+	        response.setData(Collections.emptyList());
+	    } else {
+	        response.setMessage("Service types fetched successfully");
+	        response.setData(serviceTypes);
+	    }
+
+	    return response;
+	}
+
+
 
 }
