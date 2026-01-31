@@ -13,13 +13,13 @@ import com.apnakam.entity.WorkerDetails;
 @Repository
 public interface WorkerDetailsRepo extends JpaRepository<WorkerDetails,Long > {
 
-	   @Query("""
-		        SELECT w.workerId 
-		        FROM WorkerDetails w 
-		        WHERE w.workerId LIKE %:year% 
-		        ORDER BY w.workerId DESC
-		    """)
-		    List<String> findLastWorkerIdByYear(@Param("year") String year);
+	@Query("""
+		    SELECT w.workerId
+		    FROM WorkerDetails w
+		    ORDER BY w.workerId DESC
+		""")
+		List<String> findLastWorkerId();
+
 
 	Optional<WorkerDetails> findByWorkerId(String workerId);
 		

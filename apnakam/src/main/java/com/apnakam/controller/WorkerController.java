@@ -1,11 +1,10 @@
-package com.apnakam.controller;
-
-import org.springframework.beans.factory.annotation.Autowired;
+package com.apnakam.controller;import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +13,6 @@ import com.apnakam.model.ResponseModel;
 import com.apnakam.model.WorkerDetailsModel;
 import com.apnakam.service.WorkerService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -45,7 +43,7 @@ public class WorkerController {
 	        return res;
 	        }
 
-	 @GetMapping
+	 @GetMapping("workerAll")
 	 public ResponseModel getAllWorkers(
 	         @RequestParam(defaultValue = "0") int page,
 	         @RequestParam(defaultValue = "10") int size) {

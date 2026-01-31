@@ -12,7 +12,7 @@ public class WorkerDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	@Column
     private String workerId;
 
 
@@ -22,7 +22,7 @@ public class WorkerDetails {
 	@Column(name = "mobile_no", nullable = false, unique = true)
 	private String mobileNo;
 
-	@Column(unique = true)
+	@Column
 	private String email;
 
 	@Column(name = "service_type", nullable = false)
@@ -45,6 +45,9 @@ public class WorkerDetails {
 
 	@Column
 	private String status /* = "ACTIVE" */;
+	@Column
+	public String loginPassword;
+
 
 	@Column(name = "created_at")
 	private Timestamp createdAt;

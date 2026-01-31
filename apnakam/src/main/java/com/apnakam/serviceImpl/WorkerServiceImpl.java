@@ -45,6 +45,7 @@ public class WorkerServiceImpl extends AbstractMasterRepository implements Worke
 
 		// Map Model → Entity
 		WorkerDetails worker = new WorkerDetails();
+		worker.setWorkerId(allMethodsUses.generateWorkerId());
 		worker.setFullName(workerModel.getFullName());
 		worker.setMobileNo(workerModel.getMobileNo());
 		worker.setEmail(workerModel.getEmail());
@@ -52,7 +53,7 @@ public class WorkerServiceImpl extends AbstractMasterRepository implements Worke
 		worker.setExperienceYears(workerModel.getExperienceYears());
 		worker.setBasePrice(workerModel.getBasePrice());
 		worker.setCity(workerModel.getCity());
-		worker.setWorkerId(allMethodsUses.generateWorkerId());
+		worker.setLoginPassword(workerModel.getLoginPassword());
 
 		// System-controlled fields
 		worker.setAvailability(true);
@@ -66,7 +67,7 @@ public class WorkerServiceImpl extends AbstractMasterRepository implements Worke
 		WorkerDetails savedWorker = workerDetailsRepo.save(worker);
 
 		response.setMessage("Worker added successfully");
-		response.setData(savedWorker);
+		response.setData(worker.getWorkerId());
 		response.setHttpStatus(HttpStatus.CREATED);
 		response.setName("APNAKAM");
 
@@ -92,7 +93,7 @@ public class WorkerServiceImpl extends AbstractMasterRepository implements Worke
 
 		// Entity → Model (DTO)
 		WorkerDetailsModel model = new WorkerDetailsModel();
-		model.setId(worker.getId());
+//		model.setId(worker.getId());
 		model.setFullName(worker.getFullName());
 		model.setMobileNo(worker.getMobileNo());
 		model.setEmail(worker.getEmail());
@@ -131,7 +132,7 @@ public class WorkerServiceImpl extends AbstractMasterRepository implements Worke
 		// Entity → DTO
 		List<WorkerDetailsModel> workerModels = workerPage.getContent().stream().map(worker -> {
 			WorkerDetailsModel model = new WorkerDetailsModel();
-			model.setId(worker.getId());
+//			model.setId(worker.getId());
 			model.setFullName(worker.getFullName());
 			model.setMobileNo(worker.getMobileNo());
 			model.setServiceType(worker.getServiceType());
