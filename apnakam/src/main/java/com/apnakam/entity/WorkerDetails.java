@@ -19,7 +19,7 @@ public class WorkerDetails {
 	@Column(name = "full_name", nullable = false)
 	private String fullName;
 
-	@Column(name = "mobile_no", nullable = false, unique = true)
+	@Column(name = "mobile_no", nullable = false)
 	private String mobileNo;
 
 	@Column

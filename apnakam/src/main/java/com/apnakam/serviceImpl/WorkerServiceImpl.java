@@ -116,50 +116,62 @@ public class WorkerServiceImpl extends AbstractMasterRepository implements Worke
 	}
 
 	@Override
-	public ResponseModel getAllWorkers(int page, int size) {
+	public ResponseModel getAllWorkers(int page, int size, String serviceType) {
 
-		ResponseModel response = new ResponseModel();
+	    ResponseModel response = new ResponseModel();
 
-		Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
-		Page<WorkerDetails> workerPage = workerDetailsRepo.findAll(pageable);
+	    Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
 
-		if (workerPage.isEmpty()) {
-			response.setHttpStatus(HttpStatus.NO_CONTENT);
-			response.setMessage("No workers found");
-			response.setData(Collections.emptyList());
-			response.setName("GET_ALL_WORKERS");
-			return response;
-		}
+	    Page<WorkerDetails> workerPage;
 
-		// Entity → DTO
-		List<WorkerDetailsModel> workerModels = workerPage.getContent().stream().map(worker -> {
-			WorkerDetailsModel model = new WorkerDetailsModel();
-//			model.setId(worker.getId());
-			model.setFullName(worker.getFullName());
-			model.setMobileNo(worker.getMobileNo());
-			model.setServiceType(worker.getServiceType());
-			model.setCity(worker.getCity());
-			model.setAvailability(worker.getAvailability());
-			model.setStatus(worker.getStatus());
-			model.setRating(worker.getRating());
-			return model; // ✅ IMPORTANT
-		}).collect(Collectors.toList());
+	    // ✅ Filter only when serviceType is provided
+	    if (serviceType != null && !serviceType.trim().isEmpty()) {
+	        workerPage = workerDetailsRepo
+	                .findByServiceTypeIgnoreCase(serviceType.trim(), pageable);
+	    } else {
+	        workerPage = workerDetailsRepo.findAll(pageable);
+	    }
 
-		// Pagination metadata
-		Map<String, Object> result = new HashMap<>();
-		result.put("workers", workerModels);
-		result.put("currentPage", workerPage.getNumber());
-		result.put("totalItems", workerPage.getTotalElements());
-		result.put("totalPages", workerPage.getTotalPages());
-		result.put("pageSize", workerPage.getSize());
+	    if (workerPage.isEmpty()) {
+	        response.setHttpStatus(HttpStatus.NO_CONTENT);
+	        response.setMessage("No workers found");
+	        response.setData(Collections.emptyList());
+	        response.setName("GET_ALL_WORKERS");
+	        return response;
+	    }
 
-		response.setHttpStatus(HttpStatus.OK);
-		response.setMessage("Workers fetched successfully");
-		response.setData(result);
-		response.setName("GET_ALL_WORKERS");
+	    // Entity → DTO
+	    List<WorkerDetailsModel> workerModels = workerPage.getContent()
+	            .stream()
+	            .map(worker -> {
+	                WorkerDetailsModel model = new WorkerDetailsModel();
+	                model.setFullName(worker.getFullName());
+	                model.setMobileNo(worker.getMobileNo());
+	                model.setServiceType(worker.getServiceType());
+	                model.setCity(worker.getCity());
+	                model.setAvailability(worker.getAvailability());
+	                model.setStatus(worker.getStatus());
+	                model.setRating(worker.getRating());
+	                return model;
+	            })
+	            .collect(Collectors.toList());
 
-		return response;
+	    // Pagination metadata
+	    Map<String, Object> result = new HashMap<>();
+	    result.put("workers", workerModels);
+	    result.put("currentPage", workerPage.getNumber());
+	    result.put("totalItems", workerPage.getTotalElements());
+	    result.put("totalPages", workerPage.getTotalPages());
+	    result.put("pageSize", workerPage.getSize());
+
+	    response.setHttpStatus(HttpStatus.OK);
+	    response.setMessage("Workers fetched successfully");
+	    response.setData(result);
+	    response.setName("GET_ALL_WORKERS");
+
+	    return response;
 	}
+
 	
 	
 	@Override

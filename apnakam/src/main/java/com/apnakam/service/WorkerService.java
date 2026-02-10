@@ -10,7 +10,7 @@ public interface WorkerService {
 
 	ResponseModel getWorkerById(String id);
 
-	ResponseModel getAllWorkers(int page, int size);
+	ResponseModel getAllWorkers(int page, int size, String ServiceTYpe);
 
 	ResponseModel updateWorker(String workerId, WorkerDetailsModel model);
 

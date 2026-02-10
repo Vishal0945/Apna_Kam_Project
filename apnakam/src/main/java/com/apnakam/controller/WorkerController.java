@@ -46,16 +46,16 @@ public class WorkerController {
 	 @GetMapping("workerAll")
 	 public ResponseModel getAllWorkers(
 	         @RequestParam(defaultValue = "0") int page,
-	         @RequestParam(defaultValue = "10") int size) {
+	         @RequestParam(defaultValue = "10") int size ,@RequestParam(required = false) String ServiceTYpe ) {
 
-	     return workerService.getAllWorkers(page, size);
+	     return workerService.getAllWorkers(page, size , ServiceTYpe);
 	 }
 
 	    
 //
-	 @PutMapping("/update/{workerId}")
+	 @PutMapping("/update/workerDetails")
 	 public ResponseModel updateWorker(
-	         @PathVariable String workerId,
+	         @RequestParam String workerId,
 	         @RequestBody WorkerDetailsModel model) {
 
 	    log.info("INFO: Update request received for Worker ID: " + workerId);
