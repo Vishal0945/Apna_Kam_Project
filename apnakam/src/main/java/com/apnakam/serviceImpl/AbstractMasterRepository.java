@@ -2,6 +2,7 @@ package com.apnakam.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.apnakam.repository.AddressRepository;
 import com.apnakam.repository.OtpRepository;
 import com.apnakam.repository.RegistrationRepo;
 import com.apnakam.repository.ServiceTypeRepo;
@@ -20,5 +21,10 @@ WorkerDetailsRepo workerDetailsRepo;
 WorkCategoryRepo workCategoryRepo;
 @Autowired
 ServiceTypeRepo serviceTypeRepo;
+
+@Autowired
+AddressMapper mapper;
+@Autowired
+AddressRepository repository;
 
 }

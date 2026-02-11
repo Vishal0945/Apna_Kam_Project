@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.apnakam.model.ResponseModel;
+import com.apnakam.serviceImpl.ResourceNotFoundException;
 
 
 	
@@ -28,4 +29,25 @@ import com.apnakam.model.ResponseModel;
 	    }
 	
 
+	    @ExceptionHandler(ResourceNotFoundException.class)
+	    public ResponseEntity<ResponseModel> handleNotFound(ResourceNotFoundException ex) {
+
+	        ResponseModel response = new ResponseModel();
+	        response.setMessage(ex.getMessage());
+	        response.setHttpStatus(HttpStatus.NOT_FOUND);
+	        response.setName("ERROR");
+
+	        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+	    }
+
+	    @ExceptionHandler(Exception.class)
+	    public ResponseEntity<ResponseModel> handleGlobal(Exception ex) {
+
+	        ResponseModel response = new ResponseModel();
+	        response.setMessage("Something went wrong");
+	        response.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+	        response.setName("ERROR");
+
+	        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
 }

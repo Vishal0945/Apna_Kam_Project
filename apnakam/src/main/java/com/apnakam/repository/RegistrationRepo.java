@@ -10,4 +10,6 @@ public interface RegistrationRepo extends JpaRepository<Registration,Long > {
 
 	Boolean existsByMobileNumber(String mobile);
 
+	Registration findByMobileNumber(String number);
+
 }
