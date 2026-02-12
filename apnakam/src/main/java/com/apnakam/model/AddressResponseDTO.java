@@ -19,4 +19,6 @@ public class AddressResponseDTO {
 	    private String addressType;
 	    private Boolean isDefault;
 	    private String mobileNumber;
+	    private String fullName;
+	    
 }

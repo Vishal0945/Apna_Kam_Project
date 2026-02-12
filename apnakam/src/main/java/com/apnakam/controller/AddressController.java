@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.*;
 
@@ -37,11 +38,11 @@ public class AddressController {
 	        return response;
 	    }
 
-	    @GetMapping
-	    public ResponseEntity<ResponseModel> list() {
+	    @GetMapping("/getAllAddress/History")
+	    public ResponseEntity<ResponseModel> list(@RequestParam String mobileNumber) {
 
 	        ResponseModel response = new ResponseModel();
-	        response.setData(service.getAll());
+	        response.setData(service.getAll(mobileNumber));
 	        response.setMessage("Address list fetched successfully");
 	        response.setHttpStatus(HttpStatus.OK);
 	        response.setName("LIST_ADDRESS");
@@ -49,10 +50,10 @@ public class AddressController {
 	        return new ResponseEntity<>(response, HttpStatus.OK);
 	    }
 
-	    @DeleteMapping("/{id}")
-	    public ResponseEntity<ResponseModel> delete(@PathVariable Long id) {
+	    @DeleteMapping("/delete/address")
+	    public ResponseEntity<ResponseModel> delete(@RequestParam Long id , @RequestParam String mobileNumber) {
 
-	        service.delete(id);
+	        service.delete(id, mobileNumber);
 
 	        ResponseModel response = new ResponseModel();
 	        response.setMessage("Address deleted successfully");

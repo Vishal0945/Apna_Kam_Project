@@ -23,6 +23,7 @@ public class AddressRequestDTO {
     private Double longitude;
 
     private String addressType;
+    private String fullName;
     private Boolean isDefault;
     private String mobileNumber;
     private String regMobileNumber;

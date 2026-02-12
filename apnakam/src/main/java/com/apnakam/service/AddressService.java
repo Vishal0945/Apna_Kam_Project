@@ -14,8 +14,8 @@ import jakarta.validation.Valid;
 public interface AddressService {
 
 	   AddressResponseDTO save(AddressRequestDTO dto);
-	    List<AddressResponseDTO> getAll();
-	    void delete(Long addressId);
+	    List<AddressResponseDTO> getAll(String mobileNumber);
+	    void delete(Long addressId,String mobileNumber);
 	    void setDefault(Long addressId);
 
 

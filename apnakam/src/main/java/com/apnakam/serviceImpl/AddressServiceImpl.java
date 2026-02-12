@@ -1,6 +1,7 @@
 package com.apnakam.serviceImpl;
 
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,14 @@ public class AddressServiceImpl extends AbstractMasterRepository implements Addr
 	private AllMethodsUses allMethodsUses;
 	CommonConstant commonConstant = new CommonConstant();
 
-	
+	Timestamp now = new Timestamp(System.currentTimeMillis());
 
     // Temporary - replace with actual logged-in user logic
-    private Long getUserId() {
-        return 1L; // Replace later with real user context
+    private Long getUserId(String mobileNumber) {
+    	Registration getMobileId=registrationRepo.findByMobileNumber(mobileNumber);
+    	Long idRtn =getMobileId.getRegistrationId();
+    	
+        return idRtn; // Replace later with real user context
     }
 
     // ================= SAVE =================
@@ -42,7 +46,7 @@ public class AddressServiceImpl extends AbstractMasterRepository implements Addr
 
             if (dto.getRegMobileNumber() == null || dto.getRegMobileNumber().isBlank()) {
                 log.error("Mobile number is missing in request");
-                throw new IllegalArgumentException("Mobile number is required");
+                throw new IllegalArgumentException(" Register Mobile number is required");
             }
 
             String number = dto.getRegMobileNumber();
@@ -65,7 +69,7 @@ public class AddressServiceImpl extends AbstractMasterRepository implements Addr
 
             // 🔹 Convert DTO to Entity
             UserAddress address = mapper.toEntity(dto, userId);
-
+            address.setCreatedAt(now);
             address.setUserId(userId);
 
             // 🔹 Save
@@ -92,9 +96,9 @@ public class AddressServiceImpl extends AbstractMasterRepository implements Addr
 
     // ================= GET ALL =================
     @Override
-    public List<AddressResponseDTO> getAll() {
+    public List<AddressResponseDTO> getAll(String mobileNumber) {
 
-        Long userId = getUserId();
+        Long userId = getUserId(mobileNumber);
         log.info("Fetching addresses for userId: {}", userId);
 
         List<UserAddress> list =
@@ -111,9 +115,9 @@ public class AddressServiceImpl extends AbstractMasterRepository implements Addr
 
     // ================= DELETE (SOFT DELETE) =================
     @Override
-    public void delete(Long addressId) {
+    public void delete(Long addressId,String mobileNumber) {
 
-        Long userId = getUserId();
+        Long userId = getUserId(mobileNumber);
         log.info("Deleting addressId: {} for userId: {}", addressId, userId);
 
         UserAddress address = repository
@@ -134,27 +138,28 @@ public class AddressServiceImpl extends AbstractMasterRepository implements Addr
     // ================= SET DEFAULT =================
     @Override
     public void setDefault(Long addressId) {
+    	
 
-        Long userId = getUserId();
-        log.info("Setting default addressId: {} for userId: {}", addressId, userId);
-
-        UserAddress address = repository
-                .findByIdAndUserIdAndIsActiveTrue(addressId, userId)
-                .orElseThrow(() -> {
-                    log.error("Address not found with id: {}", addressId);
-                    return new ResourceNotFoundException("Address not found");
-                });
-
-        resetDefault(userId);
-
-        address.setIsDefault(true);
-
-        repository.save(address);
-
-        log.info("Default address updated successfully: {}", addressId);
+//        Long userId = getUserId();
+//        log.info("Setting default addressId: {} for userId: {}", addressId, userId);
+//
+//        UserAddress address = repository
+//                .findByIdAndUserIdAndIsActiveTrue(addressId, userId)
+//                .orElseThrow(() -> {
+//                    log.error("Address not found with id: {}", addressId);
+//                    return new ResourceNotFoundException("Address not found");
+//                });
+//
+//        resetDefault(userId);
+//
+//        address.setIsDefault(true);
+//
+//        repository.save(address);
+//
+//        log.info("Default address updated successfully: {}", addressId);
     }
 
-    // ================= RESET DEFAULT =================
+//    // ================= RESET DEFAULT =================
     private void resetDefault(Long userId) {
 
         List<UserAddress> addresses =

@@ -19,6 +19,7 @@ public class AddressMapper {
         address.setState(dto.getState());
         address.setPincode(dto.getPincode());
         address.setLatitude(dto.getLatitude());
+        address.setFullName(dto.getFullName());
         address.setLongitude(dto.getLongitude());
         address.setMobileNumber(dto.getMobileNumber());
         address.setAddressType(dto.getAddressType());
@@ -40,6 +41,7 @@ public class AddressMapper {
                 .addressType(address.getAddressType())
                 .isDefault(address.getIsDefault())
                 .mobileNumber(address.getMobileNumber())
+                .fullName(address.getFullName())
                 .build();
     }
 }
