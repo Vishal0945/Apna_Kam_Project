@@ -29,6 +29,11 @@ import lombok.RequiredArgsConstructor;
 public class FileController {
 
     private final FileService service;
+    
+	@GetMapping("/hello")
+	public String hello() {
+		return "api is running properly...";
+	}
 
     @PostMapping("/upload")
     public ResponseEntity<Document> upload(@RequestParam MultipartFile file) throws Exception {

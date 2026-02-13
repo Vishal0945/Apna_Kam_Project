@@ -25,7 +25,10 @@ public class AddressController {
 	@Autowired
 	 AddressService service;
 
-
+	@GetMapping("/hello")
+	public String hello() {
+		return "api is running properly...";
+	}
 	  @PostMapping("/SaveAddress")
 	    public ResponseModel save(@Valid @RequestBody AddressRequestDTO dto) {
 
