@@ -1,0 +1,5 @@
+1. Apnakam port - 9001
+2. file system port -9002
+3. eureka port -8761
+4. gateway port -8080
+5. payment port 9003

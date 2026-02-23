@@ -11,12 +11,17 @@ spring:
         - id: apnakam
           uri: lb://APNAKAM
           predicates:
-            - Path=/credential/**,/api/v1/addresses/** , /Worker/**
+            - Path=/credential/**,/api/v1/addresses/**,/Worker/**
 
         - id: filemanager
           uri: lb://FILEMANAGER
           predicates:
             - Path=/files/**
+
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/api/payments/**
 
 eureka:
   client:
