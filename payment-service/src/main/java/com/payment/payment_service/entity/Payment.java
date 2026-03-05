@@ -3,6 +3,8 @@ package com.payment.payment_service.entity;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,7 +27,9 @@ public class Payment {
     private String gatewayOrderId;
     private String paymentId;
     private String signature;
-    private String status;
+    
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus status;
     private String refundId;
     private String regMobile;
     
