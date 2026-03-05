@@ -19,7 +19,7 @@ public class Payment {
     private Long id;
 
     private String orderId;
-    private String userId;
+    private Integer userId;
     private Double amount;
     private String currency;
     private String gatewayOrderId;
@@ -27,6 +27,8 @@ public class Payment {
     private String signature;
     private String status;
     private String refundId;
+    private String regMobile;
+    
 
     private LocalDateTime createdAt = LocalDateTime.now();
 

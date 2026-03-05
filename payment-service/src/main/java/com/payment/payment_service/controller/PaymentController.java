@@ -22,10 +22,10 @@ public class PaymentController {
 
     @PostMapping("/create-order")
     public ResponseEntity<?> createOrder(
-            @RequestParam String orderId,
+            @RequestParam String regMobile,
             @RequestParam Double amount) throws Exception {
 
-        return ResponseEntity.ok(service.createOrder(orderId, amount));
+        return ResponseEntity.ok(service.createOrder(regMobile, amount));
     }
 
     @PostMapping("/verify")
