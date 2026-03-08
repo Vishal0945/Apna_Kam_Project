@@ -3,3 +3,709 @@
 3. eureka port -8761
 4. gateway port -8080
 5. payment port 9003
+6. Booking Port -9004
+
+
+
+
+1. Post API
+
+URL- http://localhost:9001/Worker/add/worker
+
+Json -
+{
+  
+  "fullName": "Divya Sharma",
+  "mobileNo": "8772505910",
+  "email": "rahul.sharma@example.com",
+  "serviceType": "Electrician",
+  "experienceYears": 5,
+  "basePrice": 500.0,
+  "city": "Mumbai",
+  "availability": true,
+  "rating": 4.6,
+  "status": "ACTIVE",
+  "loginPassword": "password@123"
+}
+
+
+Response 
+{
+    "data": "WK/2026/0012",
+    "httpStatus": "201 CREATED",
+    "message": "Worker added successfully",
+    "name": "APNAKAM"
+}
+
+---------------------------------------------------------------------
+
+2. Get API
+URL - http://localhost:9001/Worker/worker?id=WK/2026/0003
+
+Response -
+{
+    "data": {
+        "fullName": "Divya Sharma",
+        "mobileNo": "9876544210",
+        "email": "rahul.sharma@example.com",
+        "serviceType": "Electrician",
+        "experienceYears": 5,
+        "basePrice": 500.0,
+        "city": "Mumbai",
+        "availability": false,
+        "rating": 0.0,
+        "status": "INACTIVE",
+        "loginPassword": null
+    },
+    "httpStatus": "200 OK",
+    "message": "Worker fetched successfully",
+    "name": "GET_WORKER_BY_ID"
+}
+
+-------------------------------------------------------------------------
+3. Get API 
+
+URL - http://localhost:9001/Worker/workerAll?page=0
+
+Response - 
+{
+    "data": {
+        "totalItems": 12,
+        "totalPages": 2,
+        "pageSize": 10,
+        "currentPage": 0,
+        "workers": [
+            {
+                "fullName": "Divya Sharma",
+                "mobileNo": "8772105910",
+                "email": null,
+                "serviceType": "Electrician",
+                "experienceYears": 0,
+                "basePrice": null,
+                "city": "Mumbai",
+                "availability": true,
+                "rating": 0.0,
+                "status": "ACTIVE",
+                "loginPassword": null
+            },
+            {
+                "fullName": "Divya Sharma",
+                "mobileNo": "8772505910",
+                "email": null,
+                "serviceType": "Electrician",
+                "experienceYears": 0,
+                "basePrice": null,
+                "city": "Mumbai",
+                "availability": true,
+                "rating": 0.0,
+                "status": "ACTIVE",
+                "loginPassword": null
+            },
+            {
+                "fullName": "Divya Sharma",
+                "mobileNo": "8772503910",
+                "email": null,
+                "serviceType": "Electrician",
+                "experienceYears": 0,
+                "basePrice": null,
+                "city": "Mumbai",
+                "availability": true,
+                "rating": 0.0,
+                "status": "ACTIVE",
+                "loginPassword": null
+            },
+            {
+                "fullName": "Divya Sharma",
+                "mobileNo": "3172503910",
+                "email": null,
+                "serviceType": "Electrician",
+                "experienceYears": 0,
+                "basePrice": null,
+                "city": "Mumbai",
+                "availability": true,
+                "rating": 0.0,
+                "status": "ACTIVE",
+                "loginPassword": null
+            },
+            {
+                "fullName": "Divya Sharma",
+                "mobileNo": "9172503910",
+                "email": null,
+                "serviceType": "Electrician",
+                "experienceYears": 0,
+                "basePrice": null,
+                "city": "Mumbai",
+                "availability": true,
+                "rating": 0.0,
+                "status": "ACTIVE",
+                "loginPassword": null
+            },
+            {
+                "fullName": "Divya Sharma",
+                "mobileNo": "9172543910",
+                "email": null,
+                "serviceType": "Electrician",
+                "experienceYears": 0,
+                "basePrice": null,
+                "city": "Mumbai",
+                "availability": true,
+                "rating": 0.0,
+                "status": "ACTIVE",
+                "loginPassword": null
+            },
+            {
+                "fullName": "Divya Sharma",
+                "mobileNo": "9172543610",
+                "email": null,
+                "serviceType": "Electrician",
+                "experienceYears": 0,
+                "basePrice": null,
+                "city": "Mumbai",
+                "availability": true,
+                "rating": 0.0,
+                "status": "ACTIVE",
+                "loginPassword": null
+            },
+            {
+                "fullName": "Divya Sharma",
+                "mobileNo": "9172543210",
+                "email": null,
+                "serviceType": "Electrician",
+                "experienceYears": 0,
+                "basePrice": null,
+                "city": "Mumbai",
+                "availability": true,
+                "rating": 0.0,
+                "status": "ACTIVE",
+                "loginPassword": null
+            },
+            {
+                "fullName": "Divya Sharma",
+                "mobileNo": "9872543210",
+                "email": null,
+                "serviceType": "Electrician",
+                "experienceYears": 0,
+                "basePrice": null,
+                "city": "Mumbai",
+                "availability": true,
+                "rating": 0.0,
+                "status": "ACTIVE",
+                "loginPassword": null
+            },
+            {
+                "fullName": "Divya Sharma",
+                "mobileNo": "9876544210",
+                "email": null,
+                "serviceType": "Electrician",
+                "experienceYears": 0,
+                "basePrice": null,
+                "city": "Mumbai",
+                "availability": false,
+                "rating": 0.0,
+                "status": "INACTIVE",
+                "loginPassword": null
+            }
+        ]
+    },
+    "httpStatus": "200 OK",
+    "message": "Workers fetched successfully",
+    "name": "GET_ALL_WORKERS"
+}
+
+---------------------------------------------------------------------------------------
+
+4. Delete API
+
+URL- http://localhost:9001/Worker/delete?workerId=WK/2026/0003
+
+Response -
+ {
+    "data": null,
+    "httpStatus": "200 OK",
+    "message": "Worker deleted successfully (soft delete)",
+    "name": "DELETE_WORKER"
+}
+
+------------------------------------------------------------------------------------------------
+5. Get API
+URL - http://localhost:9001/Worker/all/getAllCategories
+
+response- 
+{
+    "data": [
+        {
+            "categoryId": 1,
+            "categoryName": "ELECTRICIAN"
+        },
+        {
+            "categoryId": 2,
+            "categoryName": "HOME_CLEANING"
+        },
+        {
+            "categoryId": 3,
+            "categoryName": "AC_REPAIR"
+        },
+        {
+            "categoryId": 4,
+            "categoryName": "PLUMBING"
+        },
+        {
+            "categoryId": 5,
+            "categoryName": "CAR_CLEANING"
+        }
+    ],
+    "httpStatus": null,
+    "message": "Categories fetched successfully",
+    "name": null
+}
+
+---------------------------------------------------------------------------------------
+6. Get API 
+URL - http://localhost:9001/Worker/all/serviceType?id=5
+
+Response - {
+    "data": [
+        {
+            "categoryId": 5,
+            "serviceName": "INTERIOR_CLEAN",
+            "serviceTypeId": 16
+        },
+        {
+            "categoryId": 5,
+            "serviceName": "EXTERIOR_WASH",
+            "serviceTypeId": 17
+        },
+        {
+            "categoryId": 5,
+            "serviceName": "FULL_CAR_CLEAN",
+            "serviceTypeId": 18
+        }
+    ],
+    "httpStatus": null,
+    "message": "Service types fetched successfully",
+    "name": null
+}
+
+------------------------------------------------------------------------------
+7. PUT API
+URL - http://localhost:9001/Worker/update/workerDetails?workerId=WK/2026/0009
+
+
+JSON - {
+  "fullName": "Ramesh Kumar",
+  "mobileNo": "9876543210",
+  "email": "ramesh.kumar@gmail.com",
+  "serviceType": "Electrician",
+  "experienceYears": 6,
+  "basePrice": 650,
+  "availability": true,
+  "rating": 4.6,
+  "city": "Delhi",
+  "status": "ACTIVE"
+}
+
+
+response-
+{
+    "data": {
+        "fullName": "Ramesh Kumar",
+        "mobileNo": "9876543210",
+        "email": "ramesh.kumar@gmail.com",
+        "serviceType": "Electrician",
+        "experienceYears": 6,
+        "basePrice": 650.0,
+        "city": "Delhi",
+        "availability": null,
+        "rating": null,
+        "status": null,
+        "loginPassword": null
+    },
+    "httpStatus": "200 OK",
+    "message": "Worker updated successfully",
+    "name": "UPDATE_WORKER"
+}
+
+------------------------------------------------------------------------------
+8. Post 
+
+save address
+http://localhost:9001/api/v1/addresses/SaveAddress
+
+{
+  "addressLine1": "Sector 62",
+  "addressLine2": "Near Metro Station",
+  "landmark": "Opposite HDFC Bank",
+  "city": "Noida",
+  "state": "Uttar Pradesh",
+  "pincode": "201301",
+  "latitude": 28.6139,
+  "longitude": 77.2090,
+  "addressType": "HOME",
+  "isDefault": true,
+  "regMobileNumber":"8860244730",
+  "mobileNumber":"1122334455",
+  "fullName":"Sonal"
+}
+
+
+response :
+{
+    "data": {
+        "addressLine1": "Sector 62",
+        "addressLine2": "Near Metro Station",
+        "addressType": "HOME",
+        "city": "Noida",
+        "fullName": "Vishal",
+        "id": 15,
+        "isDefault": true,
+        "landmark": "Opposite HDFC Bank",
+        "latitude": 28.6139,
+        "longitude": 77.209,
+        "mobileNumber": "1122334455",
+        "pincode": "201301",
+        "state": "Uttar Pradesh"
+    },
+    "httpStatus": "201 CREATED",
+    "message": "Address saved successfully",
+    "name": "SAVE_ADDRESS"
+}
+
+
+-----------------------------------------------------------------------
+9. Get
+URL - http://localhost:9001/api/v1/addresses/getAllAddress/History?mobileNumber=8860244730
+
+response:
+{
+    "data": [
+        {
+            "addressLine1": "Sector 62",
+            "addressLine2": "Near Metro Station",
+            "addressType": "HOME",
+            "city": "Noida",
+            "fullName": "",
+            "id": 6,
+            "isDefault": true,
+            "landmark": "Opposite HDFC Bank",
+            "latitude": 28.6139,
+            "longitude": 77.209,
+            "mobileNumber": "1122334455",
+            "pincode": "201301",
+            "state": "Uttar Pradesh"
+        },
+        {
+            "addressLine1": "Sector 62",
+            "addressLine2": "Near Metro Station",
+            "addressType": "HOME",
+            "city": "Noida",
+            "fullName": null,
+            "id": 4,
+            "isDefault": false,
+            "landmark": "Opposite HDFC Bank",
+            "latitude": 28.6139,
+            "longitude": 77.209,
+            "mobileNumber": "1122334455",
+            "pincode": "201301",
+            "state": "Uttar Pradesh"
+        },
+        {
+            "addressLine1": "Sector 62",
+            "addressLine2": "Near Metro Station",
+            "addressType": "HOME",
+            "city": "Noida",
+            "fullName": "sonal",
+            "id": 5,
+            "isDefault": false,
+            "landmark": "Opposite HDFC Bank",
+            "latitude": 28.6139,
+            "longitude": 77.209,
+            "mobileNumber": "1122334455",
+            "pincode": "201301",
+            "state": "Uttar Pradesh"
+        }
+    ],
+    "httpStatus": "200 OK",
+    "message": "Address list fetched successfully",
+    "name": "LIST_ADDRESS"
+}
+--------------------------------------------------------------------------
+10.
+URL- delete
+http://localhost:9001/api/v1/addresses/delete/address?mobileNumber=9105531670&id=13
+
+response-
+{
+    "data": null,
+    "httpStatus": "200 OK",
+    "message": "Address deleted successfully",
+    "name": "DELETE_ADDRESS"
+}
+
+-------------------------------------------------------------
+
+11. Post
+URL -http://localhost:8080/files/upload 
+
+Form-Data → file
+
+response- 
+
+{
+    "docId": 2,
+    "docUUID": "899778b6-b8e6-4056-8f7e-24573b943765",
+    "fileName": "1770924707838_VishalResume (1).pdf",
+    "fileType": "application/pdf",
+    "filePath": "C:\\Users\\chauh\\Desktop\\FileSystem\\uploads\\1770924707838_VishalResume (1).pdf",
+    "fileSize": 57802,
+    "uploadedAt": "2026-02-13T01:01:47.8537087"
+}
+
+----------------------------------------------------------------
+12. GET
+
+URL- http://localhost:8080/files/download/6782c1c5-f4c9-441b-8fbb-a6e3796398e1
+
+
+----------------------------------------------------------------------------
+13. DELETE
+URL -  http://localhost:8080/files/delete/6782c1c5-f4c9-441b-8fbb-a6e3796398e1
+
+===================
+05/03/2026
+===================
+
+-------------------------------------------------------------------------
+14. Post
+URL -http://localhost:9003/api/payments/create-order?amount=809.88&regMobile=8860244732
+
+response-
+{
+    "gatewayOrderId": "order_SNZjBHrRlItGe9",
+    "amount": 810,
+    "orderId": "ORD_1006",
+    "currency": "INR"
+}
+
+---------------------------------------------------------------------
+
+15. post
+http://localhost:9003/api/payments/verify?orderId=ORD_1002&paymentId=IdshareRozarpay&signature=Rozarpay
+
+response- {
+    "body": {
+        "status": "FAILED",
+        "message": "Signature verification failed"
+    },
+    "headers": {
+        "ETag": null,
+        "accept": [],
+        "acceptCharset": [],
+        "acceptLanguage": [],
+        "acceptLanguageAsLocales": [],
+        "acceptPatch": [],
+        "accessControlAllowCredentials": false,
+        "accessControlAllowHeaders": [],
+        "accessControlAllowMethods": [],
+        "accessControlAllowOrigin": null,
+        "accessControlExposeHeaders": [],
+        "accessControlMaxAge": -1,
+        "accessControlRequestHeaders": [],
+        "accessControlRequestMethod": null,
+        "allow": [],
+        "cacheControl": null,
+        "connection": [],
+        "contentDisposition": {
+            "attachment": false,
+            "charset": null,
+            "filename": null,
+            "formData": false,
+            "inline": false,
+            "name": null,
+            "type": ""
+        },
+        "contentLanguage": null,
+        "contentLength": -1,
+        "contentType": null,
+        "date": -1,
+        "empty": true,
+        "expires": -1,
+        "host": null,
+        "ifMatch": [],
+        "ifModifiedSince": -1,
+        "ifNoneMatch": [],
+        "ifUnmodifiedSince": -1,
+        "lastModified": -1,
+        "location": null,
+        "origin": null,
+        "pragma": null,
+        "range": [],
+        "upgrade": null,
+        "vary": []
+    },
+    "statusCode": "400 BAD_REQUEST"
+}
+
+---------------------------------------------------------------------
+07/03/2026
+post
+16. url - http://localhost:9004/booking/create
+JSON -
+
+{
+  "customerName": "Vishu",
+  "customerMobile": "9876543210",
+  "workerId": "WK/2026/0001",
+  "serviceType": "Electrician", 
+    "serviceSubType": "fan,wire,switch",
+  "bookingDate": "2026-03-10",
+  "slot": "10AM-12PM",
+  "address": "Delhi",
+  "amount": 500
+}
+
+response - 
+
+{
+    "message": "Booking created successfully",
+    "data": {
+        "id": 1,
+        "bookingId": "BK/2026/0001",
+        "customerName": "Vishu",
+        "customerMobile": "9876543210",
+        "workerId": "WK/2026/0001",
+        "serviceType": "Electrician",
+        "serviceSubType": null,
+        "bookingDate": "2026-03-10",
+        "slot": "10AM-12PM",
+        "address": "Delhi",
+        "amount": 500.0,
+        "status": "CREATED",
+        "createdAt": "2026-03-07T04:59:53.781+00:00"
+    },
+    "httpStatus": "OK",
+    "name": null
+}
+
+-----------------------------------------------------------------------
+
+17. 
+Get 
+url -http://localhost:9004/booking/bookingDetails?bookingId=BK/2026/0001
+
+response-
+
+{
+    "message": "Booking found",
+    "data": {
+        "id": 1,
+        "bookingId": "BK/2026/0001",
+        "customerName": "Vishu ji",
+        "customerMobile": "9876543210",
+        "workerId": "WK/2026/0001",
+        "serviceType": "Electrician",
+        "serviceSubType": "fan,wire,switch",
+        "bookingDate": "2026-03-10",
+        "slot": "10AM-12PM",
+        "address": "Delhi",
+        "amount": 500.0,
+        "status": "CREATED",
+        "createdAt": "2026-03-07T04:59:53.781+00:00"
+    },
+    "httpStatus": "OK",
+    "name": null
+}
+
+
+----------------------------------------------------------------------
+08/03/2026
+
+18.post
+
+URL- http://localhost:9003/service/pricing/add
+
+JSON- {
+  "serviceType": "ELECTRICIAN",
+  "basePrice": 600,
+  "serviceSubType": "fan",
+  "active": true
+}
+response- 
+{
+    "data": {
+        "active": true,
+        "basePrice": 600.0,
+        "commissionPercent": 25.0,
+        "id": 5,
+        "serviceSubType": "fan",
+        "serviceType": "ELECTRICIAN"
+    },
+    "httpStatus": null,
+    "message": "Service pricing added successfully",
+    "name": null
+}
+
+-----------------------------------------------------------
+
+19 . 
+
+URL - http://localhost:9003/service/pricing/all
+
+response-
+
+{
+    "data": [
+        {
+            "active": true,
+            "basePrice": 600.0,
+            "commissionPercent": 25.0,
+            "id": 3,
+            "serviceSubType": "pipe repair",
+            "serviceType": "Plumber"
+        },
+        {
+            "active": true,
+            "basePrice": 600.0,
+            "commissionPercent": 25.0,
+            "id": 4,
+            "serviceSubType": "Tap repair",
+            "serviceType": "Plumber"
+        },
+        {
+            "active": true,
+            "basePrice": 600.0,
+            "commissionPercent": 25.0,
+            "id": 5,
+            "serviceSubType": "fan",
+            "serviceType": "ELECTRICIAN"
+        }
+    ],
+    "httpStatus": 200,
+    "message": "All services fetched",
+    "name": null
+}
+
+---------------------------------------------------------------
+
+20. 
+URL - http://localhost:9003/service/pricing/update?id=5 
+
+json - {
+
+  "basePrice": 50000
+
+}
+
+response- 
+{
+    "data": {
+        "active": true,
+        "basePrice": 123.0,
+        "commissionPercent": 25.0,
+        "id": 5,
+        "serviceSubType": "fan",
+        "serviceType": "ELECTRICIAN"
+    },
+    "httpStatus": 200,
+    "message": "Service pricing updated",
+    "name": null
+}

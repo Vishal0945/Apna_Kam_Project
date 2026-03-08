@@ -34,36 +34,36 @@ public class BookingController {
         return bookingService.getBookingById(bookingId);
     }
     
-    @GetMapping("/customer/{mobile}")
-    public ResponseModel getCustomerBookings(@PathVariable String mobile) {
+    @GetMapping("/customer")
+    public ResponseModel getCustomerBookings(@RequestParam String mobile) {
 
         return bookingService.getBookingsByCustomer(mobile);
     }
 
     // Get bookings by worker
-    @GetMapping("/worker/{workerId}")
-    public ResponseModel getWorkerBookings(@PathVariable String workerId) {
+    @GetMapping("/worker/getBookingsByWorker")
+    public ResponseModel getWorkerBookings(@RequestParam String workerId) {
 
         return bookingService.getBookingsByWorker(workerId);
     }
 
     // Cancel booking
-    @PutMapping("/cancel/{bookingId}")
-    public ResponseModel cancelBooking(@PathVariable String bookingId) {
+    @PutMapping("/cancel")
+    public ResponseModel cancelBooking(@RequestParam String bookingId) {
 
         return bookingService.cancelBooking(bookingId);
     }
 
     // Start service
-    @PutMapping("/start/{bookingId}")
-    public ResponseModel startBooking(@PathVariable String bookingId) {
+    @PutMapping("/start")
+    public ResponseModel startBooking(@RequestParam String bookingId) {
 
         return bookingService.startBooking(bookingId);
     }
 
     // Complete service
-    @PutMapping("/complete/{bookingId}")
-    public ResponseModel completeBooking(@PathVariable String bookingId) {
+    @PutMapping("/complete")
+    public ResponseModel completeBooking(@RequestParam String bookingId) {
 
         return bookingService.completeBooking(bookingId);
     }

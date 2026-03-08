@@ -11,7 +11,7 @@ import com.booking.entity.WorkerDetails;
 @Repository
 public interface WorkerDetailsRepo extends JpaRepository<WorkerDetails,Long > {
 
-	List<WorkerDetails> findByServiceTypeAndAvailability(String serviceType, boolean b);
+	List<WorkerDetails> findByServiceTypeAndAvailability(String serviceType, Long id);
 
 
 
